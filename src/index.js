@@ -9,6 +9,7 @@ const history = createBrowserHistory();
 import MapaView from './common/components/MapaView';
 import Detalle from './common/components/Detalle';
 
+import 'antd/dist/antd.css';
 require('./common/stylesheets/general.scss');
 
 ReactDOM.render((

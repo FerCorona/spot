@@ -2,9 +2,9 @@ const axios = require('axios');
 
 import { encodeParams } from './helpers';
 
-export const baseURL = 'http://staging.spot2.mx';
+export const baseURL = 'https://staging.spot2.mx';
 
-export const headers = { 'Authorization': `Bearer X|YhrV99YWcDm2UOGYYNM6WDcbbwId8R2mfJf3B9BM`};
+export const headers = { 'Authorization': `Bearer 19|zmderMoyx4O4BHN9wHq8Cbc5rgswjROl0TUHaQav`};
 
 const instance = axios.create({
   baseURL,
@@ -12,7 +12,7 @@ const instance = axios.create({
 });
 
 
-const getSpots = () => instance.post(`/api/spots`);
+const getSpots = () => instance.get(`/api/spots`);
 
 export {
   getSpots

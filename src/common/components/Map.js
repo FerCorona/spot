@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const pin_icon = require('../assets/pin.png');
+import pin_icon from '../assets/pin.png';
+
+const Marker = ({ id }) => <img
+  className='Pin'
+  src={pin_icon}
+  onClick={() => window.location = `/detalle/${id}`}/>;
 
 class Map extends Component {
   constructor(props) {
@@ -13,15 +18,12 @@ class Map extends Component {
     return (
       <div style={{ height: '100%', width: '100%' }}>
         <GoogleMapReact
+          bootstrapURLKeys={{ key: '' }}
           defaultCenter={center}
           defaultZoom={zoom}
         >
           {
-            pines.map(pin => <img
-              src={pin_icon}
-              lat={59.955413}
-              lng={30.337844}
-              onClick={() => alert('holis')}/>)
+            pines.map(pin => <Marker lat={pin.latitude} lng={pin.longitude} id={pin.id}/>)
           }
         </GoogleMapReact>
       </div>
@@ -30,11 +32,13 @@ class Map extends Component {
 }
 
 Map.defaultProps = {
-  pines: [ '' ],
+  pines: [ 
+    { lat: 19.427197299437186, lng:  -99.16753059929398 }
+   ],
   center: {
-    lat: 59.95,
-    lng: 30.33
+    lat: 19.427197299437186,
+    lng:  -99.16753059929398
   },
-  zoom: 20
+  zoom: 10
 }
 export default Map;
