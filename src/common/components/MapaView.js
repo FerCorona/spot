@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Map from './Map';
-import { Select, Button, Col, Row, Typography } from 'antd';
+import { Select, Button, Col, Row, Typography, Modal } from 'antd';
 
 const { Option } = Select;
 const { Title } = Typography;
 
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined, BankOutlined, NumberOutlined, ShrinkOutlined } from '@ant-design/icons';
 
 import { getSpots } from '../helpers/api-helpers';
 import { TYPE, TERM } from '../helpers/constants';
@@ -16,6 +16,7 @@ const MapaView = () => {
     term: []
   });
   const [ spots, setSpots ] = useState([]);
+  const [ sopotSelected, setSpotSelected ] = useState(null);
   useEffect(() => {
     getSpots()
     .then(data => {
@@ -28,6 +29,56 @@ const MapaView = () => {
   }, [ filters ]);
   return (
     <div className='MapaView'>
+      <Modal title={!sopotSelected ? '' : sopotSelected.name} visible={sopotSelected} onOk={() => setSpotSelected(null)} onCancel={() => setSpotSelected(null)}>
+        <Row gutter={[8, 8]}>
+          <Col xs={12} lg={12} align='middle' justify='center'>
+          <BankOutlined />
+          <Typography.Title
+            level={5}
+            style={{
+              margin: 0,
+            }}
+          >
+            {!sopotSelected ? '-' : sopotSelected.street}
+          </Typography.Title>
+          </Col>
+          <Col xs={12} lg={12} align='middle' justify='center'>
+            <ShrinkOutlined />
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+              }}
+            >
+              {!sopotSelected ? '-' : sopotSelected.reference}
+            </Typography.Title>
+          </Col>
+        </Row>
+        <Row gutter={[8, 8]}>
+          <Col xs={12} lg={12} align='middle' justify='center'>
+          <NumberOutlined />
+          <Typography.Title
+            level={5}
+            style={{
+              margin: 0,
+            }}
+          >
+            {!sopotSelected ? '-' : sopotSelected.ext_number}
+          </Typography.Title>
+          </Col>
+          <Col xs={12} lg={12} align='middle' justify='center'>
+            <NumberOutlined />
+            <Typography.Title
+              level={5}
+              style={{
+                margin: 0,
+              }}
+            >
+              {!sopotSelected ? '-' : sopotSelected.ext_number}
+            </Typography.Title>
+          </Col>
+        </Row>
+      </Modal>
       <div className='Header'>
         <div className='FilterContainer'>
           <Title level={2}>Busqueda de spots</Title>
@@ -67,7 +118,7 @@ const MapaView = () => {
         </div>
       </div>
       <div className='Map'>
-        <Map pines={spots} />
+        <Map pines={spots} onPinSelected={setSpotSelected} />
       </div>
     </div>
   );

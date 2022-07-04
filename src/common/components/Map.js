@@ -3,10 +3,10 @@ import GoogleMapReact from 'google-map-react';
 
 import pin_icon from '../assets/pin.png';
 
-const Marker = ({ id }) => <img
+const Marker = ({ pin, onPinSelected }) => <img
   className='Pin'
   src={pin_icon}
-  onClick={() => window.location = `/detalle/${id}`}/>;
+  onClick={() => onPinSelected(pin)}/>;
 
 class Map extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Map extends Component {
   }
 
   render() {
-    const { pines, center, zoom } = this.props;
+    const { pines, center, zoom, onPinSelected } = this.props;
     return (
       <div style={{ height: '100%', width: '100%' }}>
         <GoogleMapReact
@@ -23,7 +23,7 @@ class Map extends Component {
           defaultZoom={zoom}
         >
           {
-            pines.map(pin => <Marker lat={pin.latitude} lng={pin.longitude} id={pin.id}/>)
+            pines.map(pin => <Marker lat={pin.latitude} lng={pin.longitude} pin={pin} onPinSelected={onPinSelected} />)
           }
         </GoogleMapReact>
       </div>
@@ -39,6 +39,7 @@ Map.defaultProps = {
     lat: 19.427197299437186,
     lng:  -99.16753059929398
   },
-  zoom: 10
+  zoom: 10,
+  onPinSelected: () => {}
 }
 export default Map;

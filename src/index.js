@@ -15,9 +15,8 @@ require('./common/stylesheets/general.scss');
 ReactDOM.render((
   <Router history={history} >
     <Routes>
+      <Route exact path='/' element={<MapaView />} />
       <Route path='/mapa' element={<MapaView />} />
-      <Route path='/' element={<MapaView />} />
-      <Route path='/detalle/:id' element={<Detalle />} />
     </Routes>
   </Router>
 ), document.getElementById('app'));

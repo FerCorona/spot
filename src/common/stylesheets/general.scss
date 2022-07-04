@@ -55,16 +55,22 @@
 
 .ant-select-selector,
 .ant-select-selection-item,
-.ant-btn.ant-btn-primary {
+.ant-btn.ant-btn-primary,
+.ant-btn.ant-btn-default {
   border-radius: 10px !important;
 }
 
 .ant-btn.ant-btn-primary {
   border-color: #DCB575;
-    background: #DCB575;
+  background: #DCB575;
 }
 
 .Pin {
   width: 26px;
   transform: translate(-13px, -13px);
+}
+
+.ant-modal-header,
+.ant-modal-content {
+  border-radius: 10px;
 }
