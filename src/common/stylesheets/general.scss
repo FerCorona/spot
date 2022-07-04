@@ -1,0 +1,18 @@
+.MapaView {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  align-items: center;
+  .Header {
+    height: 20vh;
+  }
+  .Map {
+    height: 80vh;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+  .Map, .Header {
+    width: calc( 100% - 20px);
+  }
+}
